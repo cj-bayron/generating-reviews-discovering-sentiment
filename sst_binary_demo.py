@@ -25,7 +25,7 @@ else:
 	trX, vaX, teX, trY, vaY, teY = sst_binary()
 	print('Completed.')
 
-	print('Saving processed labels...', end='')
+	print('Saving processed labels... ', end='')
 	np.save('data/processed/train_y.npy', trY)
 	np.save('data/processed/valid_y.npy', vaY)
 	np.save('data/processed/test_y.npy', teY)
