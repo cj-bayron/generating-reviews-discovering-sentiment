@@ -105,6 +105,8 @@ venv.bak/
 
 # ignore
 data/processed/*
+classifier/*
 
 # retain folders
 !data/processed/.gitkeep
+!classifier/.gitkeep
