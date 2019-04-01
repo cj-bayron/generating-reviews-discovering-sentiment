@@ -172,7 +172,7 @@ class Model(object):
                 sorted_xs = sorted_xs[ndone:]
                 nsubseq = len(xsubseq)
                 xmb, mmb = batch_pad(xsubseq, nsubseq, nsteps)
-                for batch in range(0, nsubseq, nbatch):
+                for batch in tqdm(range(0, nsubseq, nbatch)):
                     start = batch
                     end = batch+nbatch
                     batch_smb = seq_rep(

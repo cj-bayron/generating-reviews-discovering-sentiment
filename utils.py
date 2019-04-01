@@ -3,12 +3,13 @@ import html
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+from tqdm import tqdm
 from sklearn.linear_model import LogisticRegression
 
 def train_with_reg_cv(trX, trY, vaX, vaY, teX=None, teY=None, penalty='l1',
         C=2**np.arange(-8, 1).astype(np.float), seed=42):
     scores = []
-    for i, c in enumerate(C):
+    for i, c in tqdm(enumerate(C)):
         model = LogisticRegression(C=c, penalty=penalty, random_state=seed+i)
         model.fit(trX, trY)
         score = model.score(vaX, vaY)
@@ -26,10 +27,9 @@ def train_with_reg_cv(trX, trY, vaX, vaY, teX=None, teY=None, penalty='l1',
 
 def load_sst(path):
     data = pd.read_csv(path)
-    X = data['sentence'].values.tolist()
-    Y = data['label'].values
+    X = data['sentence'].to_numpy().tolist()
+    Y = data['label'].to_numpy()
     return X, Y
-
 
 def sst_binary(data_dir='data/'):
     """
